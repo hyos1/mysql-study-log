@@ -27,3 +27,6 @@ VALUES (1, '프리미엄 청바지', 59900, 100, '2025-06-11');
 
 -- sample 모든 데이터 조회
 SELECT * FROM sample;
+
+-- customers 테이블에서 서울에 사는 고객 이름 찾기
+SELECT name FROM customers WHERE address = '서울';
