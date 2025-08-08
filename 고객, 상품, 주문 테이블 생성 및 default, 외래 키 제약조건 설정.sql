@@ -28,11 +28,11 @@ CREATE TABLE orders (
  order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
  status VARCHAR(20) NOT NULL DEFAULT '주문접수',
 
--- orders테이블과 customers테이블 연결하는 외래 키 제약조건
+-- orders 테이블과 customers 테이블 연결하는 외래 키 제약조건
  CONSTRAINT fk_orders_customers FOREIGN KEY (customer_id)
  REFERENCES customers(customer_id),
 
--- orders테이블과 products테이블 연결하는 외래 키 제약조건
+-- orders 테이블과 products 테이블 연결하는 외래 키 제약조건
  CONSTRAINT fk_orders_products FOREIGN KEY (product_id)
  REFERENCES products(product_id)
 );
