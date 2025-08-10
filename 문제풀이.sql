@@ -51,8 +51,7 @@ CREATE TABLE products (
 DESC products;
 
 -- 문제5: 외래 키(Foreign Key)로 테이블 관계 맺기
--- 고객( customers )과 주문( orders ) 테이블을 생성해라. orders 테이블의 customer_id 는 customers 테이
-블의 customer_id 를 참조하는 외래 키(Foreign Key) 관계를 맺어야 한다.
+-- 고객( customers )과 주문( orders ) 테이블을 생성해라. orders 테이블의 customer_id 는 customers 테이블의 customer_id 를 참조하는 외래 키(Foreign Key) 관계를 맺어야 한다.
 -- customers 테이블 생성
 CREATE TABLE customers (
  customer_id INT AUTO_INCREMENT PRIMARY KEY,
