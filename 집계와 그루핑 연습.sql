@@ -67,3 +67,66 @@ GROUP BY
 	customer_name, category
 ORDER BY
 	customer_name, `카테고리별 구매 금액` DESC;
+    
+-- 여러 컬럼 기준 그룹화
+-- 예제 시나리오: 고객이 어떤 카테고리에서 얼마를 사용했는가?
+SELECT
+	customer_name,
+	category,
+	SUM(price * quantity) AS `카테고리별 구매 금액`
+FROM
+	order_stat
+GROUP BY
+	customer_name, category
+ORDER BY
+	customer_name, `카테고리별 구매 금액` DESC;
+    
+-- 카테고리별로 묶어서 상품 개수
+SELECT
+	category,
+	COUNT(*)
+FROM
+	order_stat
+GROUP BY
+	category;
+    
+-- GROUP으로 묶은 결과에 대해서 필터링하는 HAVING
+-- "총 매출액이 50만 원 이상인 핵심 카테고리
+-- 1단계: 먼저 카테고리별로 그룹화하여 총 매출액 집계하기
+SELECT
+	category,
+	SUM(price * quantity) AS total_sales
+FROM
+	order_stat
+GROUP BY
+	category;
+-- 2단계: HAVING 절로 2차 필터링
+SELECT
+	category,
+	SUM(price * quantity) AS total_sales
+FROM 
+	order_stat
+GROUP BY
+	category
+HAVING
+	SUM(price * quantity) >= 500000;
+
+-- '3회 이상 주문한' 충성 고객
+-- 1단계: 고객별 총 주문 횟수 집계하기
+SELECT
+	customer_name,
+	COUNT(*) AS order_count
+FROM
+	order_stat
+GROUP BY
+	customer_name;
+-- 2단계: HAVING 절을 추가하여 주문 횟수 3회 이상인 그룹 필터링하기
+SELECT
+	customer_name,
+	COUNT(*) AS order_count
+FROM
+	order_stat
+GROUP BY
+	customer_name
+HAVING
+	COUNT(*) >= 3;
