@@ -41,3 +41,29 @@ SELECT
 	MAX(order_date) AS `최근 주문일` 
 FROM
 	order_stat;
+    
+-- 고객별로 총 주문 횟수, 총 구매 수량, 그리고 총 구매 금액을 함께 계산
+SELECT
+	customer_name,
+    COUNT(*) AS `총 주문 횟수`,
+    SUM(quantity) AS `총 구매 수량`,
+    SUM(price * quantity) AS `총 구매 금액`
+FROM
+	order_stat
+GROUP BY
+	customer_name
+ORDER BY
+	`총 구매 금액` DESC;
+
+--  여러 컬럼 기준 그룹화
+-- 고객이 어떤 카테고리에서 얼마를 사용했는가?
+SELECT
+	customer_name,
+	category,
+	SUM(price * quantity) AS `카테고리별 구매 금액`
+FROM
+	order_stat
+GROUP BY
+	customer_name, category
+ORDER BY
+	customer_name, `카테고리별 구매 금액` DESC;
