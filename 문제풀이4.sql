@@ -42,3 +42,35 @@ GROUP BY
 	customer_name
 ORDER BY
 	`총 주문 횟수` DESC, `총 구매 수량` DESC;
+    
+-- 문제5: order_stat 테이블에서 고객별 총 구매 금액을 계산하고, 총 구매 금액이 40만 원 이상인 'VIP 고객' 목록만 조회
+-- 결과에는 고객 이름과 총 구매 금액이 포함되어야 하며, 총 구매 금액이 높은 순으로 정렬되어야 한다.
+SELECT
+	customer_name,
+	SUM(price * quantity) AS `총 구매 금액`
+FROM
+	order_stat
+GROUP BY
+	customer_name
+HAVING
+	SUM(price * quantity) >= 400000
+ORDER BY
+	`총 구매 금액` DESC;
+    
+-- 문제6: order_stat 테이블에서 '도서' 카테고리를 제외한( WHERE ) 주문들 중에서, 2회 이상 주문한 고객들을 찾아( GROUP 
+-- BY , HAVING ), 그 고객들의 이름, 주문 횟수, 총 사용 금액을 조회해라. 결과는 총 사용 금액이 높은 순으로 정렬되어야
+-- 한다.
+SELECT
+	customer_name,
+	COUNT(*) AS `주문 횟수`,
+	SUM(price * quantity) AS `총 사용 금액`
+FROM
+	order_stat
+WHERE
+	category != '도서' OR category IS NULL -- '도서' 카테고리가 아닌 주문, NULL도 포함
+GROUP BY
+	customer_name
+HAVING
+	COUNT(*) >= 2
+ORDER BY
+	`총 사용 금액` DESC;
