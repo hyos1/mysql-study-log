@@ -6,15 +6,14 @@ SELECT name AS 상품명, price AS 판매가 FROM products;
 SELECT * FROM customers WHERE name = '장영실';
 
 -- 문제3: products 테이블에서 가격( price )이 10000원 이상이면서, 동시에 재고( stock_quantity )가 50개 미만인 상
-품을 조회해라.
+-- 품을 조회해라.
 SELECT * FROM products WHERE price >= 10000 AND stock_quantity < 50;
 
--- 문제4: products 테이블에서 product_id 가 2번, 3번, 4번 중 하나에 해당하는 상품들의 이름( name )과 가격( price )
-을 조회해라.
+-- 문제4: products 테이블에서 product_id 가 2번, 3번, 4번 중 하나에 해당하는 상품들의 이름( name )과 가격( price )을 조회해라.
 SELECT name, price FROM products WHERE product_id IN (2, 3, 4);
 
 -- 문제5: customers 테이블에서 주소( address )가 '서울특별시'로 시작하는 고객의 이름( name )과 전체 주소( address )
-를 조회해라.
+-- 를 조회해라.
 SELECT name, address FROM customers WHERE address LIKE '서울특별시%';
 
 -- 문제6: products 테이블에서 상품 설명( description )이 아직 입력되지 않은(NULL) 상품의 모든 정보를 조회
@@ -25,7 +24,7 @@ SELECT * FROM products
 ORDER BY price DESC;
 
 -- 문제8: products 테이블의 상품 정보를 먼저 가격( price )의 오름차순으로 정렬하고, 만약 가격이 같다면 재고 수량
-( stock_quantity )이 많은 순(내림차순)으로 정렬하여 조회해라.
+-- ( stock_quantity )이 많은 순(내림차순)으로 정렬하여 조회해라.
 SELECT * FROM products
 ORDER BY price ASC, stock_quantity DESC;
 
@@ -35,12 +34,12 @@ ORDER BY join_date DESC
 LIMIT 2;
 
 -- 문제10: orders 테이블을 참조하여, 한 번이라도 주문을 한 적이 있는 고객의 ID( customer_id )와 주문한 상품의
-ID( product_id ) 조합을 중복 없이 조회해라.
+-- ID( product_id ) 조합을 중복 없이 조회해라.
 SELECT distinct customer_id, product_id FROM orders;
 
 -- 문제11: products 테이블에서 가격이 3000원을 초과하고 재고가 100개 이하인 상품들을 대상으로, 재고가 많은 순서대로
-정렬하여 상위 3개의 상품명과 재고 수량을 조회해라.
-이때 상품명은 '상품 이름'으로, 재고 수량은 '남은 수량'으로 출력해라.
+-- 정렬하여 상위 3개의 상품명과 재고 수량을 조회해라.
+-- 이때 상품명은 '상품 이름'으로, 재고 수량은 '남은 수량'으로 출력해라.
 SELECT
     name AS `상품 이름`,
     stock_quantity AS `남은 수량`
