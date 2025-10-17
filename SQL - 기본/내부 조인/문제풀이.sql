@@ -7,4 +7,4 @@ SELECT
     o.quantity
 FROM orders o
 JOIN products p ON o.product_id = p.product_id
-ORDER BY o.order_id;
+ORDER BY o.order_id; 
